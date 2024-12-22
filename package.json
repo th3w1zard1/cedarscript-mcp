@@ -1,0 +1,35 @@
+{
+  "name": "cedardiff",
+  "version": "0.1.0",
+  "description": "Edit files with CEDARScript grammar rules",
+  "private": true,
+  "bin": {
+    "cedardiff": "./build/index.js"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\" && cp src/grammar.js build/grammar.js && cp -r queries build/queries",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "inspector": "npx @modelcontextprotocol/inspector build/index.js",
+    "generate-grammar": "tree-sitter generate src/grammar.js",
+    "build-grammar": "tree-sitter build --wasm",
+    "prestart": "npm run generate-grammar && npm run build-grammar",
+    "start": "tree-sitter playground"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "0.6.0",
+    "node-addon-api": "^8.0.0",
+    "node-gyp-build": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "prebuildify": "^6.0.1",
+    "tree-sitter": "^0.22.1",
+    "tree-sitter-cli": "^0.24.5",
+    "typescript": "^5.3.3"
+  },
+  "type": "module"
+}
