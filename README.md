@@ -2,42 +2,53 @@
 
 Edit files with CEDARScript grammar rules
 
-This is a TypeScript-based MCP server that implements a simple notes system. It demonstrates core MCP concepts by providing:
+This is a TypeScript-based MCP server that implements CEDARScript, a SQL-like language for code manipulation. It provides:
 
-- Resources representing text notes with URIs and metadata
-- Tools for creating new notes
-- Prompts for generating summaries of notes
+- A comprehensive grammar for code manipulation commands
+- Tools for executing CEDARScript operations
+- Support for complex pattern matching and transformations
 
 ## Features
 
-### Resources
-- List and access notes via `note://` URIs
-- Each note has a title, content and metadata
-- Plain text mime type for simple content access
+### Grammar
+
+- SQL-like syntax for code operations (DDL, DML)
+- Support for file, function, class, and method targeting
+- Pattern matching with regex, prefix/suffix, and indentation rules
+- Block-level code manipulation capabilities
 
 ### Tools
-- `create_note` - Create new text notes
-  - Takes title and content as required parameters
-  - Stores note in server state
 
-### Prompts
-- `summarize_notes` - Generate a summary of all stored notes
-  - Includes all note contents as embedded resources
-  - Returns structured prompt for LLM summarization
+- `edit_file` - Execute CEDARScript commands
+  - Takes script and working directory as parameters
+  - Supports file creation, deletion, moving, and updating
+  - Pattern-based code transformations
+
+### Implementation Status
+
+Current testing has revealed:
+
+- Command parsing works correctly
+- Grammar supports complex operations
+- File writing mechanism needs improvement
+- Success messages returned but changes not persisted
 
 ## Development
 
 Install dependencies:
+
 ```bash
 npm install
 ```
 
 Build the server:
+
 ```bash
 npm run build
 ```
 
 For development with auto-rebuild:
+
 ```bash
 npm run watch
 ```
